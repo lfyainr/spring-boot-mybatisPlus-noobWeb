@@ -1,4 +1,3 @@
-# spring-boot-mybatisPlus-noobWeb
 目标新手：没有ssh和ssm的基础，懂servlet
 
 简单版本 spring-boot + mybatis Plus的搭建环境。
@@ -96,14 +95,29 @@ application.yml中，需要使用新的驱动包名：	com.mysql.cj.jdbc.Driver 
 
 5、启动
 
-输入 http://localhost:8080/mmappletfileupload/list 会得到 success 的信息，即创建成功。
-
 输入 http://localhost:8080/mmappletfileupload/test 会得到 “Hello 世界！” 的信息。
 
 输入 http://localhost:8080/test/test 会得到 “Hello world!” 的信息。
 
+如果 输入 http://localhost:8080/mmappletfileupload/list 会得到 success 的信息，即创建成功。
+
 这个在 MmAppletFileUploadController.java 中，通过 test() 方法，通过class的注解 和 method的注解，进行映射的接口信息，新手知道前后台的交互即可 在前端使用 ajax进行读取数据，例子为 Test.java。
+
+如果 输入 http://localhost:8080/mmappletfileupload/list 后台有报错，错误信息 会发送 sql语句，查看 sql语句，是  
+
+	SELECT  id,taskId .. from mm_applet_file_upload
+
+这时发现表中的字段是 task_id 并不是字段 taskId 。
+
+我们需要配置一下 application.yml 中的 mybatis-plus，加上一下的属性：
+
+	  global-config:
+	    #数据库大写下划线转换
+	    #capital-mode: true
 
 6、其他
 
 utils包 是使用的 renren开源 的一套 分页工具。
+
+application.yml 还有许多配置信息，查看文件有详细讲解。
+
